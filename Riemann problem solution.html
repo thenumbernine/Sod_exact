@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8'/>
+		<title>MHD Worksheet</title>
+		<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		<script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+		<style type='text/css'>
+table {	
+	border-collapse:collapse;
+	border: 1px solid black;
+}
+table tr, table td, table th {
+	border: 1px solid black;
+	padding: 5px;
+}
+		</style>
+	</head>
+	<body>
+
+coordinates: $x, t$<br>
+variables: $\rho, v, P$<br>
+$m^2 = \frac{\gamma - 1}{\gamma + 1}$<br>
+$K = \frac{P_L}{\rho_L^\gamma}$<br>
+<br>
+
+waves, from left to right:<br>
+<br>
+
+$x_{wave} = x_w = -C_{s,1} t$<br>
+$C_{s,1} = \sqrt{\frac{\gamma P_L}{\rho_L}}$<br>
+<br>
+
+
+$x_{contact} = x_c = v_c t$<br>
+$v_{contact} = v_c = v_4$<br>
+<br>
+$x_{shock} = x_s = v_s t$<br>
+$v_{shock} = v_s = v_4 \frac{\rho_4}{\rho_4 - \rho_R}$<br>
+<br>
+
+solutions:<br>
+<table>
+	<tr>
+		<th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+	</tr>
+	<tr>
+		<td>$\rho$</td>
+		<td>$\rho_1 = \rho_L$</td>
+		<td>$\rho_2 = \left( \frac{\rho_L^\gamma}{\gamma P_L} ( v_2 - \frac{x}{t} )^2 \right)^{1/(\gamma-1)}$</td>
+		<td>$\rho_3 = \rho_L \left( \frac{P_3}{P_L} \right)^{1/\gamma}$</td>
+		<td>$\rho_4 = \rho_R \left( \frac{P_4 + m^2 P_R}{P_R + m^2 P_4} \right)$</td>
+		<td>$\rho_5 = \rho_R$</td>
+	</tr>
+	<tr>
+		<td>$v$</td>
+		<td>$v_1 = 0$</td>
+		<!-- <td>$v_2 = \sqrt{\frac{(1 - m^4) {P_L}^{1/\gamma}}{m^4 \rho_L}} \left( {P_L}^{\frac{\gamma-1}{2\gamma}} - {P_2}^{\frac{\gamma-1}{2\gamma}} \right)$</td> -->
+		<td>$v_2 = (1 - m^2)(\frac{x}{t} + C_{s,1})$<br>
+		<td colspan=2>$v_3 = v_4 = (P_4 - P_R) \sqrt{\frac{1 - m^2}{\rho_R (P_4 + m^2 P_R)}}$</td>
+		<td>$v_5 = 0$</td>
+	</tr>
+	<tr>
+		<td>$P$</td>
+		<td>$P_1 = P_L$</td>
+		<td>$P_2 = K \rho_2^\gamma$</td>
+		<td colspan=2>$P_3 = P_4 = ...$</td>
+		<td>$P_5 = P_R$</td>
+	</tr>
+</table>
+
+	</body>
+</html>
