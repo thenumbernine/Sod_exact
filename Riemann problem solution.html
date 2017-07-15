@@ -54,11 +54,12 @@ solutions:<br>
 	</tr>
 	<tr>
 		<td>$v$</td>
-		<td>$v_1 = 0$</td>
+		<td>$v_1 = v_L$</td>
 		<!-- <td>$v_2 = \sqrt{\frac{(1 - m^4) {P_L}^{1/\gamma}}{m^4 \rho_L}} \left( {P_L}^{\frac{\gamma-1}{2\gamma}} - {P_2}^{\frac{\gamma-1}{2\gamma}} \right)$</td> -->
 		<td>$v_2 = (1 - m^2)(\frac{x}{t} + C_{s,1})$<br>
-		<td colspan=2>$v_3 = v_4 = (P_4 - P_R) \sqrt{\frac{1 - m^2}{\rho_R (P_4 + m^2 P_R)}}$</td>
-		<td>$v_5 = 0$</td>
+		<!-- from Dullermon: - -><td colspan=2>$v_3 = v_4 = (P_4 - P_R) \sqrt{\frac{1 - m^2}{\rho_R (P_4 + m^2 P_R)}}$</td> -->
+		<!-- from Wikipedia: --><td colspan=2>$v_3 = v_4 = v_R + \frac{(P_4 - P_R)}{ \sqrt{ \frac{\rho_R}{2} (( \gamma + 1) P_3 + (\gamma - 1) P_R) }}$</td>
+		<td>$v_5 = v_R$</td>
 	</tr>
 	<tr>
 		<td>$P$</td>
@@ -68,6 +69,12 @@ solutions:<br>
 		<td>$P_5 = P_R$</td>
 	</tr>
 </table>
+<br>
+
+The solution to $P_3$ is the root of the equality:<br>
+$u_2 = \left( P_L^{(\gamma-1)/2} - P_3^{(\gamma-1)/2} \right) \sqrt{ \frac{ (1 - m^4) P_L^{1/\gamma} }{ (m^4 \rho_L} }$<br>
+$u_4 = (P_3 - P_5) \sqrt{\frac{1 - m^2}{\rho_R (P_3 + m^2 P_R) }}$<br>
+<br>
 
 	</body>
 </html>
