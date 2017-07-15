@@ -7,3 +7,6 @@ and then 1977 Sod "A Survey of Several Finite Difference Methods for Systems of 
 and then finally http://www.itam.nsc.ru/flowlib/SRC/sod.f was the winner  
   
 ![](results.png)
+
+Here's my derivations from Dullemon, somewhat updated to Wikipedia, though not fully to the final result:  
+[wave_metric_1](https://htmlpreview.github.io/?https://github.com/thenumbernine/Sod_exact/blob/master/Riemann%20problem%20solution.html)
