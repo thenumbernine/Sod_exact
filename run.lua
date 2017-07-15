@@ -206,6 +206,6 @@ gnuplot{
 	{using='1:2', title='rho'},
 	{using='1:3', title='v'},
 	{using='1:4', title='P'},
-	{using='1:(.1*$5)', title='region'},
+	{using='1:(($5-1)/4)', title='region'},
 }
 --]]
