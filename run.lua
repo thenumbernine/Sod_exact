@@ -86,15 +86,12 @@ local rho3 = rhoL * (P3 / PL) ^ (1 / gamma)
 -- Dullemon:
 --local v3 = (P4 - PR) * math.sqrt((1 - muSq) / (rhoR * P4 * muSq * PR))
 -- http://www.itam.nsc.ru/flowlib/SRC/sod.f
-local v3 = 2 * CsL / (gamma - 1) * (1 - (P3 / PL)^((gamma - 1)/(2*gamma)))
+local v3 = vR + 2 * CsL / (gamma - 1) * (1 - (P3 / PL)^((gamma - 1)/(2*gamma)))
 local v4 = v3
 
 local rho4 = rhoR * (P4 + muSq * PR) / (PR + muSq * P4)
 
-
--- YOU ARE HERE
--- from http://www.itam.nsc.ru/flowlib/SRC/sod.f
-local vshock = v4 / (1 - rhoR / rho4)
+local vshock = v4 * rho4 / (rho4 - rhoR)
 local vtail = CsL - v4 / (1 - muSq)
 
 local v2 = function(x) return (1 - muSq) * (x/t + CsL) end

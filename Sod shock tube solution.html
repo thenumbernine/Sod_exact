@@ -20,22 +20,15 @@ table tr, table td, table th {
 
 coordinates: $x, t$<br>
 variables: $\rho, v, P$<br>
-$m^2 = \frac{\gamma - 1}{\gamma + 1}$<br>
-$K = \frac{P_L}{\rho_L^\gamma}$<br>
+$\mu^2 = \frac{\gamma - 1}{\gamma + 1}$<br>
+$C_{s,L} = \sqrt{\frac{\gamma P_L}{\rho_L}}$<br>
+$C_{s,R} = \sqrt{\frac{\gamma P_R}{\rho_R}}$<br>
 <br>
 
 waves, from left to right:<br>
-<br>
-
-$x_{wave} = x_w = -C_{s,1} t$<br>
-$C_{s,1} = \sqrt{\frac{\gamma P_L}{\rho_L}}$<br>
-<br>
-
-
-$x_{contact} = x_c = v_c t$<br>
+$v_{wave} = -C_{s,L}$<br>
+$v_{tail} = -C_{s,L} + \frac{1}{1 - \mu^2} v_4$<br>
 $v_{contact} = v_c = v_4$<br>
-<br>
-$x_{shock} = x_s = v_s t$<br>
 $v_{shock} = v_s = v_4 \frac{\rho_4}{\rho_4 - \rho_R}$<br>
 <br>
 
@@ -47,24 +40,26 @@ solutions:<br>
 	<tr>
 		<td>$\rho$</td>
 		<td>$\rho_1 = \rho_L$</td>
-		<td>$\rho_2 = \left( \frac{\rho_L^\gamma}{\gamma P_L} ( v_2 - \frac{x}{t} )^2 \right)^{1/(\gamma-1)}$</td>
-		<td>$\rho_3 = \rho_L \left( \frac{P_3}{P_L} \right)^{1/\gamma}$</td>
-		<td>$\rho_4 = \rho_R \left( \frac{P_4 + m^2 P_R}{P_R + m^2 P_4} \right)$</td>
+		<!-- Dullemon: - -><td>$\rho_2 = \left( \frac{\rho_L^\gamma}{\gamma P_L} ( v_2 - \frac{x}{t} )^2 \right)^{1/(\gamma-1)}$</td -->
+		<!-- sod.f: --><td>$\rho_2 = \rho_L ( -\frac{x}{t} \frac{\mu^2}{C_{s,L}} + (1 - \mu^2))^{\frac{2}{\gamma-1}}$<br>
+		<td>$\rho_3 = \rho_L \left(\frac{P_3}{P_L} \right)^{1/\gamma}$</td>
+		<td>$\rho_4 = \rho_R \left(\frac{P_4 + \mu^2 P_R}{P_R + \mu^2 P_4} \right)$</td>
 		<td>$\rho_5 = \rho_R$</td>
 	</tr>
 	<tr>
 		<td>$v$</td>
 		<td>$v_1 = v_L$</td>
-		<!-- <td>$v_2 = \sqrt{\frac{(1 - m^4) {P_L}^{1/\gamma}}{m^4 \rho_L}} \left( {P_L}^{\frac{\gamma-1}{2\gamma}} - {P_2}^{\frac{\gamma-1}{2\gamma}} \right)$</td> -->
-		<td>$v_2 = (1 - m^2)(\frac{x}{t} + C_{s,1})$<br>
-		<!-- from Dullermon: - -><td colspan=2>$v_3 = v_4 = (P_4 - P_R) \sqrt{\frac{1 - m^2}{\rho_R (P_4 + m^2 P_R)}}$</td> -->
-		<!-- from Wikipedia: --><td colspan=2>$v_3 = v_4 = v_R + \frac{(P_4 - P_R)}{ \sqrt{ \frac{\rho_R}{2} (( \gamma + 1) P_3 + (\gamma - 1) P_R) }}$</td>
+		<!-- <td>$v_2 = \sqrt{\frac{(1 - \mu^4) {P_L}^{1/\gamma}}{\mu^4 \rho_L}} \left( {P_L}^{\frac{\gamma-1}{2\gamma}} - {P_2}^{\frac{\gamma-1}{2\gamma}} \right)$</td> -->
+		<td>$v_2 = (1 - \mu^2)(\frac{x}{t} + C_{s,L})$<br>
+		<!-- from Dullemon: - -><td colspan=2>$v_3 = v_4 = (P_4 - P_R) \sqrt{\frac{1 - \mu^2}{\rho_R (P_4 + \mu^2 P_R)}}$</td -->
+		<!-- from Wikipedia: - -><td colspan=2>$v_3 = v_4 = v_R + \frac{(P_4 - P_R)}{ \sqrt{ \frac{\rho_R}{2} (( \gamma + 1) P_3 + (\gamma - 1) P_R) }}$</td -->
+		<!-- from sod.f: --><td colspan=2>$v_3 = v_4 = v_R + \frac{2 C_{s,L}}{\gamma-1} \left(1 - (\frac{P_3}{P_L})^{\frac{\gamma-1}{2\gamma}} \right)$</td>
 		<td>$v_5 = v_R$</td>
 	</tr>
 	<tr>
 		<td>$P$</td>
 		<td>$P_1 = P_L$</td>
-		<td>$P_2 = K \rho_2^\gamma$</td>
+		<td>$P_2 = P_L ( -\frac{x}{t} \frac{\mu^2}{C_{s,L}} + (1 - \mu^2))^{\frac{2 \gamma}{\gamma-1}}$<br>
 		<td colspan=2>$P_3 = P_4 = ...$</td>
 		<td>$P_5 = P_R$</td>
 	</tr>
@@ -72,8 +67,18 @@ solutions:<br>
 <br>
 
 The solution to $P_3$ is the root of the equality:<br>
-$u_2 = \left( P_L^{(\gamma-1)/2} - P_3^{(\gamma-1)/2} \right) \sqrt{ \frac{ (1 - m^4) P_L^{1/\gamma} }{ (m^4 \rho_L} }$<br>
-$u_4 = (P_3 - P_5) \sqrt{\frac{1 - m^2}{\rho_R (P_3 + m^2 P_R) }}$<br>
+<!-- sod.f -->
+$C_{s,R} \left( \frac{P_3}{P_R}-1 \right)
+\sqrt{
+	\frac{1 - \mu^2}{\gamma(\mu^2 + \frac{P_3}{P_R})}
+}
+= \frac{2 C_{s,L}}{\gamma-1}
+	\left(1 - (\frac{P_3}{P_L})^{\frac{\gamma-1}{2\gamma}} \right) 
+$<br>
+<!-- Dullemon
+$u_2 = \left( P_L^{(\gamma-1)/2} - P_3^{(\gamma-1)/2} \right) \sqrt{ \frac{ (1 - \mu^4) P_L^{1/\gamma} }{ (\mu^4 \rho_L} }$<br>
+$u_4 = (P_3 - P_5) \sqrt{\frac{1 - \mu^2}{\rho_R (P_3 + \mu^2 P_R) }}$<br>
+-->
 <br>
 
 	</body>
